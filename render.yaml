@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: clinic-management
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true        # Render generates a strong random secret
+      - key: DATABASE_URL
+        value: sqlite:////data/clinic.db
+    disk:
+      name: clinic-data
+      mountPath: /data
+      sizeGB: 1
